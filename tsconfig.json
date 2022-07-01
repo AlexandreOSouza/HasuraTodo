@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/ApolloClient.js", "pages/api/todos/getTodos.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/ApolloClient.js", "pages/api/getTodos.js"],
   "exclude": ["node_modules"]
 }
