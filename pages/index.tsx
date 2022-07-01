@@ -1,18 +1,16 @@
-import ApolloClient from 'apollo-boost'
 import type { NextPage } from 'next'
 import Nav from '../src/components/nav'
+import Content from '../src/components/Content'
 import { GET_INCOMPLETE_TODOS } from '../store/server/queries'
-import styles from '../styles/Home.module.css'
 import { gqlClient } from '../utils/ApolloClient'
 
 const GET_URL = '/api/getTodos'
 
 const Home: NextPage = (props) => {
-
-
   return (
     <>
       <Nav />
+      <Content />
     </>
   )
 }
