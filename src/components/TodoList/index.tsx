@@ -18,16 +18,27 @@ const TODOS: TodoItemProps[] = [
         id: 2,
         text: 'bbbb',
         checked: false
+    },
+    {
+        id: 3,
+        text: 'bbbb',
+        checked: false
     }
+
 ]
 
 const TodoList = () => {
+
+    const addNewItem = () => {
+        alert('add new item')
+    }
+
     return (
         <Box 
             width={{ sm: '40%'}} 
             height={'70vh'} 
         >
-            <TodoSearchBox />
+            <TodoSearchBox addNewItemfunction={addNewItem} />
 
             <Box background={'white'} borderRadius={5} mt={8} pb={8} boxShadow={'0px 0px 14px 0px rgba(0,0,0,0.2)'}>
                 {TODOS.map((item, index) => (
