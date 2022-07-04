@@ -7,13 +7,13 @@ const Content = () => {
     const { user } = useUser()
 
     return (
-        <Container maxW={'100%'} centerContent>
+        <Container maxW={'100%'} minHeight={'300px'} centerContent>
             <Box padding='4' maxW='md'>
                 <Text fontWeight={'bold'} color={'gray.100'} fontSize={28}>
                     { user ? `Hey ${user?.name}` : 'You must to be logged in' }
                 </Text>
             </Box>
-            <TodoList />
+            {user && <TodoList />}
         </Container>
     )
 }

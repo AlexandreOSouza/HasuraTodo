@@ -4,6 +4,7 @@ import Content from '../src/components/Content'
 import { GET_INCOMPLETE_TODOS } from '../store/server/queries'
 import { gqlClient } from '../utils/ApolloClient'
 import { Box } from '@chakra-ui/react'
+import { INSERT_TODO } from '../store/server/mutations'
 
 const GET_URL = '/api/getTodos'
 
@@ -19,7 +20,6 @@ const Home: NextPage = (props) => {
 }
 
 export async function getServerSideProps() {
-  console.log('server side')
 
   const data = await gqlClient.request(GET_INCOMPLETE_TODOS)
   console.log(data)
