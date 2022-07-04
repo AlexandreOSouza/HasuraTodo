@@ -6,8 +6,6 @@ import { gqlClient } from '../utils/ApolloClient'
 import { Box } from '@chakra-ui/react'
 import { INSERT_TODO } from '../store/server/mutations'
 
-const GET_URL = '/api/getTodos'
-
 const Home: NextPage = (props) => {
   return (
       <Box backgroundImage={'/img/bg-1.jpg'} backgroundSize={'100% auto'} backgroundRepeat={'no-repeat'} width={'100%'} >
@@ -21,8 +19,8 @@ const Home: NextPage = (props) => {
 
 export async function getServerSideProps() {
 
-  const data = await gqlClient.request(GET_INCOMPLETE_TODOS)
-  console.log(data)
+  // const data = await gqlClient.request(GET_INCOMPLETE_TODOS, {todo_user: 'xand010102@gmail.com'})
+  // console.log(data)
   return { 
       props: {
         name: 'alexandre'

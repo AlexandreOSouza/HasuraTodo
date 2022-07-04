@@ -4,15 +4,16 @@ import { useState } from "react";
 
 interface TodoItemProps {
     item: {
-        id: number;
-        text: string;
-        checked: boolean;
+        todo_id: number;
+        todo_text: string;
+        todo_mark: boolean;
+        todo_user: string;
     }
 }
 
-const TodoItem = ({item} : TodoItemProps) => {
+const TodoItem = ({ item } : TodoItemProps) => {
 
-    const [isChecked, setIsChecked] = useState(item.checked)
+    const [isChecked, setIsChecked] = useState(item.todo_mark)
     const [showDelete, setShowDelete] = useState(false)
 
     const handleChecked = () => {
@@ -45,7 +46,7 @@ const TodoItem = ({item} : TodoItemProps) => {
                     isChecked={isChecked} 
                     onChange={handleChecked} 
                 />
-                <Text ml={5} color={'gray.500'}>{item.text}</Text>
+                <Text ml={5} color={'gray.500'}>{item.todo_text}</Text>
             </Flex>
             {showDelete && <CloseIcon color={'gray.400'} />}
             
