@@ -2,6 +2,7 @@ import { useUser } from "@auth0/nextjs-auth0"
 import { Box, Container, Text } from "@chakra-ui/react"
 import axios from "axios"
 import { useMemo, useState } from "react"
+import { ThreeDots } from "react-loader-spinner"
 import TodoList from "../TodoList"
 
 const GET_TODOS = '/api/getTodos'
@@ -46,9 +47,7 @@ const Content = () => {
             </Box>
 
             {isLoading && (
-                <Text fontWeight={'bold'} color={'gray.100'} fontSize={28}>
-                    Loading...
-                </Text>
+                <ThreeDots color="pink" height={80} width={80} />
             )}
             {(user && !isLoading) && <TodoList todos={todos}/>}
         </Container>
