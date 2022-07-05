@@ -4,15 +4,9 @@ import axios from "axios"
 import { useMemo, useState } from "react"
 import { ThreeDots } from "react-loader-spinner"
 import TodoList from "../TodoList"
+import { TodoItemProps } from "../../../utils/interfaces"
 
 const GET_TODOS = '/api/getTodos'
-
-interface TodoItemProps {
-    todo_id: number;
-    todo_text: string;
-    todo_mark: boolean;
-    todo_user: string;
-}
 
 const Content = () => {
 

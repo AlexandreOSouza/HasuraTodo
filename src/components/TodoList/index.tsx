@@ -1,14 +1,8 @@
 import { Box } from "@chakra-ui/react"
 import { Key } from "react";
+import { TodoItemProps } from "../../../utils/interfaces";
 import TodoItem from "../atoms/TodoItem"
 import TodoSearchBox from "../atoms/TodoSearchBox"
-
-interface TodoItemProps {
-    todo_id: number;
-    todo_text: string;
-    todo_mark: boolean;
-    todo_user: string;
-}
 
 const TodoList = (props: any) => {
     return (
