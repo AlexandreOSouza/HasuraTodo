@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react"
+import { Key } from "react";
 import TodoItem from "../atoms/TodoItem"
 import TodoSearchBox from "../atoms/TodoSearchBox"
 
@@ -9,8 +10,7 @@ interface TodoItemProps {
     todo_user: string;
 }
 
-const TodoList = (todos: TodoItemProps[]) => {
-
+const TodoList = (props: any) => {
     return (
         <Box 
             width={{ sm: '40%'}} 
@@ -19,7 +19,7 @@ const TodoList = (todos: TodoItemProps[]) => {
             <TodoSearchBox />
 
             <Box background={'white'} borderRadius={5} mt={8} pb={8} boxShadow={'0px 0px 14px 0px rgba(0,0,0,0.2)'}>
-                {todos.map((item, index) => (
+                {props.todos.map((item: TodoItemProps, index: Key | null | undefined) => (
                     <TodoItem item={item} key={index} />
                 ))}
             </Box>

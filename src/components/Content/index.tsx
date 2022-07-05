@@ -16,16 +16,20 @@ interface TodoItemProps {
 const Content = () => {
 
     const { user } = useUser()
-    const [todos, setTodos] = useState<TodoItemProps[]>([])
+    const [todos, setTodos] = useState<TodoItemProps[]>()
+
+    const [isLoading, setIsLoading] = useState(false)
 
     useMemo(() => {
         const getTodos = async () => {
+            setIsLoading(true)
             const { data }  = await axios.post(GET_TODOS, {
                 user: user?.email
             })
             if (data.todos) {
                 setTodos(data.todos)
             }
+            setIsLoading(false)
         }
         
         if (user?.email) {
@@ -40,7 +44,13 @@ const Content = () => {
                     { user ? `Hey ${user?.name}` : 'You must to be logged in' }
                 </Text>
             </Box>
-            {user && <TodoList todos={todos} />}
+
+            {isLoading && (
+                <Text fontWeight={'bold'} color={'gray.100'} fontSize={28}>
+                    Loading...
+                </Text>
+            )}
+            {(user && !isLoading) && <TodoList todos={todos}/>}
         </Container>
     )
 }
