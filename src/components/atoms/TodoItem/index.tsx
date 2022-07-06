@@ -9,12 +9,13 @@ interface TodoItemProps {
         todo_text: string;
         todo_mark: boolean;
         todo_user: string;
-    }
+    },
+    handleDelete: (id: number) => void
 }
 
 const UPDATE_MARK = '/api/updateTodo';
 
-const TodoItem = ({ item } : TodoItemProps) => {
+const TodoItem = ({ item, handleDelete } : TodoItemProps) => {
 
     const [isChecked, setIsChecked] = useState(item.todo_mark)
     const [showDelete, setShowDelete] = useState(false)
@@ -37,7 +38,7 @@ const TodoItem = ({ item } : TodoItemProps) => {
             todo_mark: isChecked
         })
     }, [setIsChecked, isChecked])
-
+    
     return (
         <Flex 
             display={'flex'} 
@@ -58,7 +59,7 @@ const TodoItem = ({ item } : TodoItemProps) => {
                 />
                 <Text ml={5} color={'gray.500'}>{item.todo_text}</Text>
             </Flex>
-            {showDelete && <CloseIcon color={'gray.400'} />}
+            {showDelete && <CloseIcon color={'gray.400'} onClick={() => {handleDelete(item.todo_id)}} />}
             
         </Flex>
     )

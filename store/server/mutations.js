@@ -17,5 +17,13 @@ const UPDATE_TODO_MARKS = gql`
     }
 `
 
-export { INSERT_TODO, UPDATE_TODO_MARKS}
+const DELETE_TODO = gql`
+    mutation($todo_id: Int) {
+        delete_todos(where: {todo_id: {_eq: $todo_id}}) {
+            affected_rows
+        }
+    }
+`
+
+export { INSERT_TODO, UPDATE_TODO_MARKS, DELETE_TODO }
 

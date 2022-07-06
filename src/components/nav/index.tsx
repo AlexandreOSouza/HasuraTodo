@@ -56,7 +56,7 @@ const Nav = () => {
             fontFamily={'heading'}
             fontWeight={'bold'}
             color={useColorModeValue('gray.100', 'white')}>
-            TODO - APP
+              CAROL RUSSO - MINHA NAMORADA
           </Text>
         </Flex>
 
