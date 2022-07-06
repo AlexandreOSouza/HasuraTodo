@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const INSERT_TODO = gql`
+const INSERT_TODO = gql`
     mutation($todo_text: String, $todo_mark: Boolean, $todo_user: String){
         insert_todos(objects: [{ todo_text: $todo_text, todo_mark: $todo_mark, todo_user: $todo_user }]) {
             returning {
@@ -9,3 +9,13 @@ export const INSERT_TODO = gql`
         }
     }
 `
+const UPDATE_TODO_MARKS = gql`
+    mutation($todo_id: Int, $todo_mark: Boolean) {
+        update_todos(where: {todo_id: {_eq: $todo_id}}, _set: {todo_mark: $todo_mark}) {
+            affected_rows
+        }
+    }
+`
+
+export { INSERT_TODO, UPDATE_TODO_MARKS}
+

@@ -7,6 +7,7 @@ import TodoList from "../TodoList"
 import { TodoItemProps } from "../../../utils/interfaces"
 
 const GET_TODOS = '/api/getTodos'
+const INSERT_TODO = '/api/addTodo';
 
 const Content = () => {
 
@@ -15,19 +16,29 @@ const Content = () => {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    useMemo(() => {
-        const getTodos = async () => {
-            setIsLoading(true)
-            const { data }  = await axios.post(GET_TODOS, {
-                user: user?.email
-            })
-            if (data.todos) {
-                setTodos(data.todos)
-            }
-            setIsLoading(false)
+    const getTodos = async () => {
+        setIsLoading(true)
+        const { data }  = await axios.post(GET_TODOS, {
+            user: user?.email
+        })
+        if (data.todos) {
+            setTodos(data.todos)
         }
-        
-        if (user?.email) {
+        setIsLoading(false)
+    }
+
+    const saveTodo = (todoValue: string) => {
+        axios.post(INSERT_TODO, {
+            todo_text: todoValue,
+            todo_mark: Boolean(false),
+            todo_user: user?.email
+        }).then(data => {
+            getTodos()
+        })
+    }
+
+    useMemo(() => {
+       if (user?.email) {
             getTodos()
         }
     }, [user?.email])
@@ -43,7 +54,7 @@ const Content = () => {
             {isLoading && (
                 <ThreeDots color="pink" height={80} width={80} />
             )}
-            {(user && !isLoading) && <TodoList todos={todos}/>}
+            {(user && !isLoading) && <TodoList todos={todos} save={saveTodo}/>}
         </Container>
     )
 }

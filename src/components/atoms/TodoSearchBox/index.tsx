@@ -4,26 +4,12 @@ import axios from "axios";
 import { KeyboardEvent } from "react";
 import { BiCircle } from 'react-icons/bi';
 
-const INSERT_TODO = '/api/addTodo';
-
-const TodoSearchBox = () => {
-
-    const { user } = useUser()
-
-    const saveTodo = (todoValue: string) => {
-        axios.post(INSERT_TODO, {
-            todo_text: todoValue,
-            todo_mark: Boolean(false),
-            todo_user: user?.email
-        }).then(data => {
-            console.log(data)
-        })
-    }
+const TodoSearchBox = (props: any) => {
 
     const handleKeydown = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             const todoValue = e.currentTarget.value
-            saveTodo(todoValue)
+            props.save(todoValue)
             console.log('add to static list')
         }
     }

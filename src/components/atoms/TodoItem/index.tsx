@@ -1,6 +1,7 @@
 import { CloseIcon } from "@chakra-ui/icons";
 import { Box, Checkbox, Text, Flex } from "@chakra-ui/react"
-import { useState } from "react";
+import axios from "axios";
+import { useMemo, useState } from "react";
 
 interface TodoItemProps {
     item: {
@@ -10,6 +11,8 @@ interface TodoItemProps {
         todo_user: string;
     }
 }
+
+const UPDATE_MARK = '/api/updateTodo';
 
 const TodoItem = ({ item } : TodoItemProps) => {
 
@@ -27,6 +30,13 @@ const TodoItem = ({ item } : TodoItemProps) => {
     const handleMouseLeave = () => {
         setShowDelete(false)
     }
+
+    useMemo(() => {
+        axios.post(UPDATE_MARK, {
+            todo_id: item.todo_id,
+            todo_mark: isChecked
+        })
+    }, [setIsChecked, isChecked])
 
     return (
         <Flex 
